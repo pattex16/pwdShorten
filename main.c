@@ -28,6 +28,10 @@ bool isCurrentDir(char* s) //check if you are examining the current directory
 int main(int argc, char* argv[])
 {
   long int pwdLen = strlen(argv[1]);
+  if (argv[1][1] == '\0'){
+    printf("/");
+    return 0;
+  }
   long int homeLen = strlen(argv[2]);
 
   bool tilde = true;
@@ -40,7 +44,7 @@ int main(int argc, char* argv[])
     printf("%c", HOME_SYMBOL); //home directory is substituded with a HOME_SYMBOL
     i = homeLen - 1;
   } else
-    i = 0 - 1; //if you are not in a subdirectory of your home, '/' is left
+    i = -1; //if you are not in a subdirectory of your home, '/' is left
 
   if (argv[1][homeLen] == '\0') //if you are actually in your home dir stop printing
     return 0;
